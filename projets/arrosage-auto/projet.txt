@@ -1,0 +1,5 @@
+titre:   Arrosage auto
+objet:   plante
+couleur: #6d8a55
+maj:     2025-09-07
+resume:  Un arrosage automatique pour les plantes du balcon.

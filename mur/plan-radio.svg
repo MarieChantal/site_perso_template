@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs><pattern id="g" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke="#ffffff" stroke-opacity=".14" stroke-width=".8"/></pattern></defs>
+  <rect width="120" height="160" fill="#2d5c8c"/><rect width="120" height="160" fill="url(#g)"/>
+  <g transform="translate(10 18)" fill="none" stroke="#e9f1fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M80 46 L92 10" /><path d="M28 46 V36 a4 4 0 0 1 4 -4 h36 a4 4 0 0 1 4 4 V46" /><rect x="12" y="46" width="76" height="64" rx="6"/><circle cx="36" cy="80" r="16"/><circle cx="36" cy="80" r="6"/><rect x="58" y="58" width="21" height="11" rx="1"/><path d="M66 58 v11" /><circle cx="62" cy="92" r="5"/><circle cx="76" cy="92" r="5"/></g>
+  <path d="M22 138 h76 M22 134 v8 M98 134 v8" stroke="#e9f1fa" stroke-width="1"/>
+  <text x="60" y="152" fill="#e9f1fa" font-family="monospace" font-size="7" text-anchor="middle" letter-spacing=".6">RADIO · PLAN 1:2</text>
+</svg>

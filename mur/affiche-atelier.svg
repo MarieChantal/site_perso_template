@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 180">
+  <rect width="120" height="180" fill="#d9542b"/>
+  <g fill="#1f1a16" font-family="'Barlow Condensed', 'Arial Narrow', Impact, sans-serif" font-weight="800" font-size="28">
+    <text x="12" y="44" textLength="62" lengthAdjust="spacingAndGlyphs">FAIRE,</text><text x="12" y="74" textLength="96" lengthAdjust="spacingAndGlyphs">DÉFAIRE,</text><text x="12" y="104" textLength="90" lengthAdjust="spacingAndGlyphs">REFAIRE</text>
+  </g>
+  <text x="12" y="166" fill="#1f1a16" font-family="monospace" font-size="7" letter-spacing=".6">ATELIER · OUVERT</text>
+</svg>

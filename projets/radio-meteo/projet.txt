@@ -1,0 +1,5 @@
+titre:   Radio météo
+objet:   radio
+couleur: #b0603a
+maj:     2026-10-28
+resume:  Une vieille radio qui annonce la météo du jour à 7 h.

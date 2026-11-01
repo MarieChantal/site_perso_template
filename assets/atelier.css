@@ -1,0 +1,240 @@
+/*
+ * L'atelier : feuille de style du site.
+ * Deux ambiances, réglées par <html data-mode="jour|nuit"> : le mur, les planches,
+ * le parquet et la lumière changent ; les objets gardent leurs couleurs.
+ */
+
+:root {
+  --f-titre: "Caveat", "Segoe Print", cursive;
+  --f-texte: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* jour */
+  --mur: #e3dccd;
+  --encre: #2a2622;
+  --craie: #3b3631;
+  --doux: #6a6158;
+  --planche-dessus: #e0b47f;
+  --planche: #c08a55;
+  --planche-bord: #9a6a3c;
+  --planche-ombre: rgba(80, 50, 20, .22);
+  --scotch: #efe2bc;
+  --scotch-encre: #2b2621;
+  --trait: #1e2225;
+  --filtre-objet: none;
+  --filtre-deco: none;
+  --plinthe: #8f6a45;
+  --pq1: #c99b63;
+  --pq2: #bb8b55;
+  --pq3: #d4a970;
+  --pq-joint: #7d5630;
+  --pq-texte: #3b2a1a;
+  --papier: #fbf8f1;
+  --papier-encre: #2a2622;
+  --accent: #a3471f;
+  --lumiere: linear-gradient(118deg, transparent 0 34%, rgba(255, 250, 232, .45) 34% 46%, transparent 46% 52%, rgba(255, 250, 232, .3) 52% 60%, transparent 60%);
+  color-scheme: light;
+}
+
+html[data-mode="nuit"] {
+  --mur: #1d2124;
+  --encre: #efe6d4;
+  --craie: #e9dfc9;
+  --doux: #9aa3a8;
+  --planche-dessus: #c38d5a;
+  --planche: #8e5d35;
+  --planche-bord: #6b4425;
+  --planche-ombre: rgba(0, 0, 0, .45);
+  --scotch: #e3d6b0;
+  --filtre-objet: brightness(.92);
+  --filtre-deco: brightness(.72) saturate(.85);
+  --plinthe: #3a2a1c;
+  --pq1: #4f3522;
+  --pq2: #46301f;
+  --pq3: #5a3e28;
+  --pq-joint: #22170e;
+  --pq-texte: #d9cdb5;
+  --papier: #e9e1d0;
+  --papier-encre: #26221d;
+  --accent: #9a4520;
+  --lumiere: radial-gradient(ellipse 70% 40% at 16% -4%, rgba(255, 196, 120, .30), transparent 70%);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--mur);
+  color: var(--encre);
+  font-family: var(--f-texte);
+  font-size: 16px;
+  line-height: 1.55;
+  transition: background-color .5s ease;
+}
+img { max-width: 100%; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.discret { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.lumiere { position: absolute; inset: 0 0 auto; height: 1100px; max-height: 100%; background: var(--lumiere); pointer-events: none; z-index: 0; }
+
+/* ---------- en-tête ---------- */
+.entete {
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding-block: 14px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.nom { font-family: var(--f-titre); font-weight: 700; font-size: 32px; line-height: 1; color: var(--craie); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.entete nav { display: flex; align-items: center; gap: 16px; font-size: 14px; }
+.lien-nav { color: var(--doux); text-decoration: none; white-space: nowrap; }
+.lien-nav:hover { color: var(--encre); }
+.bascule {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1.5px solid var(--doux); background: transparent; color: var(--encre);
+  border-radius: 999px; padding: 4px 10px 4px 6px; cursor: pointer; font: inherit; font-size: 13px;
+}
+.bascule svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+html[data-mode="nuit"] .ic-soleil, html[data-mode="jour"] .ic-lune { display: none; }
+@media (max-width: 520px) {
+  .lien-nav { display: none; }
+  .nom { font-size: 28px; }
+}
+
+/* ---------- le mur et les étagères ---------- */
+.mur {
+  position: relative; z-index: 1; flex: 1 0 auto;
+  overflow: hidden;
+  padding-block: 20px 120px;
+  padding-left: max(22px, env(safe-area-inset-left, 0px));
+  padding-right: max(22px, env(safe-area-inset-right, 0px));
+}
+@media (max-width: 520px) {
+  .mur { padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); }
+}
+
+.etageres {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-auto-rows: 220px;
+  /* une planche en bas de chaque rangée */
+  background: repeating-linear-gradient(to bottom,
+    transparent 0 150px,
+    var(--planche-dessus) 150px 153px,
+    var(--planche) 153px 170px,
+    var(--planche-bord) 170px 172px,
+    var(--planche-ombre) 172px 180px,
+    transparent 180px 220px);
+}
+
+.projet {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  color: inherit; text-decoration: none;
+}
+.art { display: block; width: 100px; height: 110px; margin-top: 40px; transition: transform .3s ease; }
+.art svg, .art img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: bottom; }
+.o {
+  fill: var(--of, none); stroke: var(--trait);
+  stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+  overflow: visible; filter: var(--filtre-objet);
+}
+a.projet:hover .art, a.projet:focus-visible .art { transform: translateY(-7px); }
+a.projet:focus-visible { outline: none; }
+a.projet:focus-visible .etiquette { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.etiquette {
+  margin-top: 24px;
+  display: flex; flex-direction: column; align-items: center;
+  max-width: 128px; padding: 4px 12px 5px; text-align: center;
+  background: var(--scotch); color: var(--scotch-encre);
+  clip-path: polygon(0 8%, 4% 0, 96% 4%, 100% 0, 98% 50%, 100% 100%, 94% 94%, 6% 100%, 0 92%, 2% 50%);
+  transform: rotate(-1.5deg);
+}
+.projet:nth-child(3n+2) .etiquette { transform: rotate(1.5deg); }
+.etiquette b { font-family: var(--f-titre); font-weight: 700; font-size: 19px; line-height: 1; }
+.etiquette small { font-family: var(--f-mono); font-size: 9.5px; opacity: .7; margin-top: 1px; }
+.vide .art { opacity: .55; }
+.vide .o { fill: none; stroke: var(--doux); }
+.vide .etiquette { opacity: .75; }
+
+/* ---------- déco du mur (placée par atelier.js) ---------- */
+.deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; filter: var(--filtre-deco); transition: filter .5s ease; visibility: hidden; }
+.deco.prete { visibility: visible; }
+.deco > * { position: absolute; left: 0; top: 0; margin: 0; }
+.deco.prete > * { transition: transform .45s ease; }
+.d-texte { font-family: var(--f-titre); font-weight: 600; color: var(--craie); line-height: 1; white-space: nowrap; opacity: .85; }
+.d-affiche { box-shadow: 0 6px 14px rgba(0, 0, 0, .3); }
+.d-affiche img, .d-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.d-image img { object-fit: contain; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .25)); }
+.d-photo { background: #f6f3ec; padding: 6px 6px 8px; box-shadow: 0 5px 12px rgba(0, 0, 0, .3); }
+.d-photo img { display: block; width: 100%; object-fit: cover; }
+.d-photo figcaption { font-family: var(--f-titre); font-size: 15px; line-height: 1.1; color: #3b3631; text-align: center; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.scotch::before, .scotch::after { content: ""; position: absolute; top: -8px; width: 34px; height: 14px; background: rgba(235, 222, 185, .85); }
+.scotch::before { left: -10px; transform: rotate(-30deg); }
+.scotch::after { right: -10px; transform: rotate(30deg); }
+
+/* ---------- le sol (pied de page) ---------- */
+.sol { position: relative; z-index: 2; }
+.plinthe { height: 12px; background: var(--plinthe); box-shadow: 0 2px 0 rgba(0, 0, 0, .18); }
+.plancher { position: relative; height: 170px; overflow: hidden; background: var(--pq2); }
+.plancher::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(rgba(0, 0, 0, .38), rgba(0, 0, 0, .08) 40%, transparent 75%); }
+.parquet { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.fi { position: absolute; left: 0; bottom: 62px; visibility: hidden; }
+.fi.pose { visibility: visible; transition: transform .45s ease; }
+.fi svg, .fi img { display: block; height: 100%; width: auto; filter: drop-shadow(0 6px 3px rgba(0, 0, 0, .28)); }
+.credits {
+  position: absolute; z-index: 30; left: 0; right: 0; bottom: 12px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px;
+  padding: 0 16px calc(env(safe-area-inset-bottom, 0px));
+  font-family: var(--f-mono); font-size: 12px; color: var(--pq-texte);
+  text-shadow: 0 1px 2px var(--pq-joint);
+}
+.credits a { color: inherit; }
+
+/* ---------- pages de projet : une feuille punaisée au mur ---------- */
+.mur-page { display: flex; justify-content: center; align-items: flex-start; padding-top: 24px; }
+.feuille {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 760px;
+  background: var(--papier); color: var(--papier-encre);
+  padding: clamp(22px, 5vw, 52px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  transform: rotate(-.25deg);
+}
+.feuille::before, .feuille::after { content: ""; position: absolute; top: -10px; width: 90px; height: 24px; background: rgba(235, 222, 185, .85); }
+.feuille::before { left: 24px; transform: rotate(-4deg); }
+.feuille::after { right: 24px; transform: rotate(5deg); }
+.retour { display: inline-block; margin-bottom: 18px; font-size: 14px; color: var(--accent); text-decoration: none; }
+.retour:hover { text-decoration: underline; }
+.feuille-titre { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
+.feuille-objet { flex: none; width: 72px; height: 80px; }
+.feuille-objet svg, .feuille-objet img { width: 100%; height: 100%; object-fit: contain; }
+.feuille-objet .o { --trait: #1e2225; filter: none; }
+.feuille h1 { font-family: var(--f-titre); font-weight: 700; font-size: clamp(34px, 6vw, 48px); line-height: 1; margin: 0; text-wrap: balance; }
+.feuille-date { margin: 6px 0 0; font-family: var(--f-mono); font-size: 12px; opacity: .65; }
+.contenu { max-width: 65ch; overflow-wrap: break-word; }
+.contenu h1 { margin-bottom: .4em; }
+.contenu h2 { font-size: 24px; margin: 1.6em 0 .4em; line-height: 1.2; text-wrap: balance; }
+.contenu h3 { font-size: 19px; margin: 1.4em 0 .3em; }
+.contenu p, .contenu ul, .contenu ol { margin: 0 0 1em; }
+.contenu a { color: var(--accent); }
+.contenu img { display: block; height: auto; margin: 1.2em 0; box-shadow: 0 3px 10px rgba(0, 0, 0, .18); }
+.contenu blockquote { margin: 1.2em 0; padding: .2em 1em; border-left: 3px solid var(--accent); font-style: italic; }
+.contenu code { font-family: var(--f-mono); font-size: .88em; background: rgba(0, 0, 0, .06); padding: 1px 5px; border-radius: 3px; }
+.contenu pre { overflow-x: auto; background: #26292b; color: #ece6da; padding: 14px 16px; border-radius: 4px; }
+.contenu pre code { background: none; padding: 0; color: inherit; }
+.contenu table { border-collapse: collapse; display: block; overflow-x: auto; }
+.contenu th, .contenu td { border: 1px solid rgba(0, 0, 0, .15); padding: 4px 10px; }
+.galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.galerie img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, .deco.prete > *, .fi.pose { transition: none !important; }
+}

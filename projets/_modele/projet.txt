@@ -1,0 +1,11 @@
+# Modèle de projet : copie ce dossier, renomme-le (ex. mon-projet), puis remplis la fiche.
+# Les dossiers qui commencent par _ ne sont pas affichés.
+
+titre:   Mon nouveau projet
+objet:   carnet                  # un dessin de dessins/ (sans .svg), ou un fichier objet.svg / objet.png ici
+couleur: #4f6f8a                 # couleur de remplissage du dessin
+maj:     2026-11-01              # date de dernière mise à jour : sert au tri
+resume:  Une phrase qui décrit le projet.
+         Elle peut continuer sur une ligne décalée.
+# lien:  https://...             # si le projet est ailleurs (GitHub, site...) : l'objet y mène directement
+# cache: oui                     # pour le retirer de l'étagère sans le supprimer

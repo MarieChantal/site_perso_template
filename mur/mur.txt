@@ -1,0 +1,35 @@
+# Ce qui est accroché au mur de la page d'accueil.
+# Du plus important au moins important : le premier est placé en premier et passe devant.
+#
+# Types :   texte: ...          une écriture à la craie (au feutre le jour)
+#           affiche: fichier    une image de ce dossier, avec deux bouts de scotch
+#           photo: fichier      une image de ce dossier, dans un cadre de photo
+#           image: fichier      une image de ce dossier, posée telle quelle
+# Options : taille: petite | moyenne | grande
+#           cote: gauche | droite | centre          (sinon : en alternance)
+#           etagere: 1, 2, ... ou fin               (sinon : réparti sur la hauteur)
+#           rotation: -3                            (en degrés)
+#           telephone: non                          (masqué sur les petits écrans)
+#           legende: ...                            (photo seulement)
+# Les options vont sur des lignes décalées, séparées par au moins deux espaces.
+
+texte: mesurer deux fois, couper une fois
+  taille: grande   cote: centre   etagere: 1   rotation: -2
+
+affiche: plan-radio.svg
+  taille: moyenne  cote: gauche   rotation: -3
+
+affiche: affiche-atelier.svg
+  taille: moyenne  cote: droite   rotation: 4
+
+photo: photo-exemple.svg
+  taille: petite   rotation: -5   legende: été 2025
+
+texte: v2 → plus tard
+  taille: petite   rotation: 3
+
+image: regle.svg
+  taille: grande   cote: droite   rotation: -1
+
+texte: 28 cm × 4
+  taille: petite   etagere: fin   rotation: -1
