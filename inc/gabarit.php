@@ -28,6 +28,7 @@ function entete($titre = '', $classe = '')
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/atelier.css">
+<link rel="alternate" type="application/rss+xml" title="<?= h($site['nom']) ?>" href="flux.php">
 </head>
 <body class="<?= h($classe) ?>">
 <div class="lumiere" aria-hidden="true"></div>
@@ -125,6 +126,7 @@ function pied()
     <div class="credits">
       <span>© <?= h($annees) ?><?= $site['auteur'] !== '' ? ' ' . h($site['auteur']) : '' ?></span>
       <?php if ($site['email'] !== ''): ?><a href="mailto:<?= h($site['email']) ?>"><?= h($site['email']) ?></a><?php endif; ?>
+      <a href="flux.php">s'abonner (RSS)</a>
       <span>fait main, hébergé chez OVH</span>
     </div>
   </div>

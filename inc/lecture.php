@@ -106,6 +106,23 @@ function site()
     return $site;
 }
 
+/*
+ * Adresse complète du site, terminée par / (utile pour le flux RSS).
+ * Prise dans site.txt (adresse: https://...), sinon devinée à partir de la requête.
+ */
+function url_site()
+{
+    $adresse = trim(site()['adresse'] ?? '');
+    if ($adresse !== '') {
+        return rtrim($adresse, '/') . '/';
+    }
+    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    $hote = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $dossier = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
+    return ($https ? 'https' : 'http') . '://' . $hote . $dossier . '/';
+}
+
 function oui($valeur)
 {
     return in_array(strtolower(trim((string) $valeur)), ['oui', 'yes', 'vrai', '1'], true);
