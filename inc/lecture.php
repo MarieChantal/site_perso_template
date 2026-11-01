@@ -123,6 +123,13 @@ function url_site()
     return ($https ? 'https' : 'http') . '://' . $hote . $dossier . '/';
 }
 
+/* Chemin du site sur le serveur, terminé par / ("/" quand le site est à la racine). */
+function chemin_site()
+{
+    $chemin = parse_url(url_site(), PHP_URL_PATH);
+    return $chemin ? rtrim($chemin, '/') . '/' : '/';
+}
+
 function oui($valeur)
 {
     return in_array(strtolower(trim((string) $valeur)), ['oui', 'yes', 'vrai', '1'], true);

@@ -1,0 +1,50 @@
+# Réglages du serveur Apache d'OVH pour le site.
+
+# Pas de liste des fichiers quand un dossier n'a pas de page d'accueil.
+Options -Indexes
+
+# Page « introuvable » aux couleurs de l'atelier.
+# Si le site n'est pas à la racine du domaine, mets le chemin complet (ex. /atelier/404.php).
+ErrorDocument 404 /404.php
+ErrorDocument 403 /404.php
+
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS : à activer seulement quand le certificat SSL est actif sur l'hébergement
+  # (espace client OVH → Hébergements → Certificat SSL). Retire les # des deux lignes :
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # robots.txt et sitemap.xml sont générés par PHP à partir des fiches de projet.
+  RewriteRule ^robots\.txt$ robots.php [L]
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+</IfModule>
+
+# Le contenu de l'atelier s'affiche en UTF-8 (accents des fiches et du Markdown).
+AddDefaultCharset utf-8
+<IfModule mod_mime.c>
+  AddCharset utf-8 .txt .md .css .js .svg
+  AddType image/svg+xml .svg
+  AddType image/webp .webp
+</IfModule>
+
+# Compression des fichiers texte.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/xml application/rss+xml image/svg+xml
+</IfModule>
+
+# Cache navigateur. La feuille de style et le script changent rarement ;
+# après une modification, un rechargement forcé (Ctrl+Maj+R) les met à jour.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+</IfModule>
