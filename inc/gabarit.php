@@ -3,7 +3,8 @@
 
 require_once __DIR__ . '/lecture.php';
 
-function entete($titre = '', $classe = '')
+/* $base : vrai pour une page servie à une autre adresse que la sienne (la page 404), afin que ses liens relatifs restent justes. */
+function entete($titre = '', $classe = '', $base = false)
 {
     $site = site();
     $titre_complet = $titre !== '' ? $titre . ' · ' . $site['nom'] : $site['nom'];
@@ -12,7 +13,8 @@ function entete($titre = '', $classe = '')
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<?php if ($base): ?><base href="<?= h(url_site()) ?>">
+<?php endif; ?><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title><?= h($titre_complet) ?></title>
 <meta name="description" content="<?= h($site['description']) ?>">
 <script>
