@@ -3,4 +3,5 @@ nom:         Mon atelier
 auteur:
 email:
 description: Les projets que je fabrique, rangés sur l'établi.
+adresse:                         # ex. https://mon-site.fr (pour le flux RSS ; sinon devinée)
 debut:       2026

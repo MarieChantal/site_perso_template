@@ -2,6 +2,13 @@
 
 Un site perso pour partager ses projets. La page d'accueil est un mur d'atelier : chaque projet est un objet posé sur une étagère, du plus récemment mis à jour au plus ancien. Un clic sur l'objet ouvre la page du projet.
 
+<p align="center">
+  <img src="docs/accueil-jour.webp" alt="Page d'accueil en mode jour sur ordinateur : des objets dessinés posés sur deux étagères, des affiches et des écritures au mur, et un parquet en bas avec quelques objets par terre." width="640">
+  &nbsp;
+  <img src="docs/accueil-nuit-telephone.webp" alt="La même page en mode nuit sur téléphone : deux objets par étagère, plus d'étagères, et la déco répartie sur toute la hauteur du mur." width="180">
+</p>
+<p align="center"><em>L'accueil avec le contenu d'exemple : de jour sur ordinateur, de nuit sur téléphone.</em></p>
+
 Le site tourne sur l'hébergement gratuit d'OVH : PHP, pas de base de données. Tout le contenu est rangé dans des dossiers et des fichiers texte faciles à modifier à la main.
 
 ## Ajouter un projet
@@ -70,6 +77,7 @@ Les options d'une même ligne sont séparées par au moins deux espaces. Le dét
 
 - `site.txt` : le nom du site, ton nom et ton e-mail pour le pied de page, la description pour les moteurs de recherche.
 - `a-propos.md` : la page « À propos ». Si le fichier n'existe pas, le lien disparaît du menu.
+- `flux.php` : le flux RSS des projets, signalé par le lien « s'abonner (RSS) » en bas de chaque page. Un projet y apparaît, ou y réapparaît, chaque fois que tu changes sa date `maj`. Les pages en Markdown y sont incluses en entier. Indique l'adresse du site dans `site.txt` (`adresse: https://...`) pour que les liens du flux soient exacts. Pour proposer un abonnement par e-mail, un service gratuit comme follow.it ou Feedrabbit peut lire ce flux et envoyer les nouveautés.
 - Mode jour et mode nuit : le site suit le réglage de l'appareil du visiteur. Le bouton en haut à droite permet de changer, et ce choix est retenu.
 
 ## Tester sur son ordinateur
@@ -101,6 +109,7 @@ Tant que ces secrets n'existent pas, l'action ne fait rien. Tu peux aussi envoye
 index.php          l'établi (page d'accueil)
 projet.php         la page d'un projet (page.md, ou résumé et galerie)
 apropos.php        la page « À propos » (a-propos.md)
+flux.php           le flux RSS des projets
 site.txt           les réglages généraux
 projets/           un dossier par projet
 dessins/           la bibliothèque d'objets ; dessins/sol/ pour le sol
@@ -108,6 +117,7 @@ mur/               mur.txt et les images accrochées au mur
 sol/               sol.txt et les images posées par terre
 assets/            la feuille de style et le script de placement
 inc/               le code PHP commun, et Parsedown pour le Markdown (licence MIT)
+docs/              les captures d'écran de ce README (non envoyées sur OVH)
 ```
 
 Le site vide pèse moins de 200 Ko. Les 100 Mo d'OVH restent pour tes images et tes pages.
