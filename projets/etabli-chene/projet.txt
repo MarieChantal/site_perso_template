@@ -1,0 +1,5 @@
+titre:   Établi en chêne
+objet:   rabot
+couleur: #a9773f
+maj:     2026-04-11
+resume:  Un établi construit avec du chêne de récupération.

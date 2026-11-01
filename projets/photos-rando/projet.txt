@@ -1,0 +1,6 @@
+titre:   Photos de rando
+objet:   appareil-photo
+couleur: #58606a
+maj:     2026-08-02
+resume:  Une galerie de photos de randonnée.
+lien:    https://example.org/

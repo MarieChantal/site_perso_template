@@ -1,0 +1,52 @@
+# Envoie le site sur l'hébergement OVH par FTP à chaque modification de la branche main.
+# À configurer une fois dans GitHub : Settings → Secrets and variables → Actions
+#   FTP_SERVEUR        ex. ftp.cluster0XX.hosting.ovh.net
+#   FTP_UTILISATEUR    l'identifiant FTP donné par OVH
+#   FTP_MOT_DE_PASSE   le mot de passe FTP
+#   FTP_DOSSIER        (facultatif) dossier distant, ./www/ par défaut
+# Tant que ces secrets n'existent pas, le déploiement est simplement ignoré.
+
+name: Déploiement sur OVH
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploiement
+  cancel-in-progress: false
+
+jobs:
+  deploiement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier la configuration FTP
+        id: config
+        env:
+          FTP_SERVEUR: ${{ secrets.FTP_SERVEUR }}
+        run: |
+          if [ -z "$FTP_SERVEUR" ]; then
+            echo "::notice::Secrets FTP absents : déploiement ignoré."
+            echo "pret=non" >> "$GITHUB_OUTPUT"
+          else
+            echo "pret=oui" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Récupérer le site
+        if: steps.config.outputs.pret == 'oui'
+        uses: actions/checkout@v4
+
+      - name: Envoyer par FTP
+        if: steps.config.outputs.pret == 'oui'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVEUR }}
+          username: ${{ secrets.FTP_UTILISATEUR }}
+          password: ${{ secrets.FTP_MOT_DE_PASSE }}
+          server-dir: ${{ secrets.FTP_DOSSIER || './www/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md

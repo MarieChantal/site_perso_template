@@ -1,0 +1,5 @@
+titre:   Recettes
+objet:   carnet
+couleur: #4f6f8a
+maj:     2023-02-19
+resume:  Le carnet de recettes de la famille, numérisé.

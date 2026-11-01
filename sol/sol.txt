@@ -1,0 +1,28 @@
+# Ce qui traîne par terre, en bas de chaque page.
+# Du plus important au moins important : sur un petit écran, les derniers disparaissent.
+#
+# Types :   objet: nom          un dessin de dessins/sol/ (caisse, carton, touret, tabouret,
+#                               pot-de-peinture, copeaux, ou le tien)
+#           image: fichier      une image de ce dossier
+# Options : taille: petite | moyenne | grande
+#           cote: gauche | droite | centre
+#           couleur: #b0403a    (remplissage du dessin)
+#           trait: #d7b56d      (couleur du trait, si besoin)
+
+objet: caisse
+  taille: moyenne  cote: gauche  couleur: #b0403a
+
+objet: touret
+  taille: moyenne  cote: droite  couleur: #c9952f
+
+objet: carton
+  taille: grande   couleur: #b98a55
+
+objet: tabouret
+  taille: grande   cote: centre  couleur: #8e5d35
+
+objet: pot-de-peinture
+  taille: petite   couleur: #d9c9a4
+
+objet: copeaux
+  taille: petite   trait: #d7b56d

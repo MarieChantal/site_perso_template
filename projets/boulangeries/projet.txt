@@ -1,0 +1,5 @@
+titre:   Boulangeries
+objet:   globe
+couleur: #8aa0a8
+maj:     2025-06-30
+resume:  Une carte des meilleures boulangeries du quartier.

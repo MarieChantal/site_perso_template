@@ -1,0 +1,5 @@
+titre:   Lampe d'atelier
+objet:   lampe
+couleur: #c9952f
+maj:     2024-11-03
+resume:  Une lampe d'architecte des années 60, recâblée.

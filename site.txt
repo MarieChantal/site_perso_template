@@ -1,0 +1,6 @@
+# Réglages généraux du site.
+nom:         Mon atelier
+auteur:
+email:
+description: Les projets que je fabrique, rangés sur l'établi.
+debut:       2026

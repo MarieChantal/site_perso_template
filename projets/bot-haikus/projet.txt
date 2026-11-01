@@ -1,0 +1,6 @@
+titre:   Bot de haïkus
+objet:   ecran
+couleur: #7a8f8c
+maj:     2026-09-14
+resume:  Un petit programme qui publie un haïku par jour.
+lien:    https://github.com/
