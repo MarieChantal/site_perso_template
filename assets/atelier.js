@@ -29,6 +29,23 @@
     majBouton();
   }
 
+  /* ---------- menu déroulant (téléphone) ---------- */
+  var menu = document.querySelector('.menu');
+  if (menu) {
+    // la page en cours est marquée dans le menu
+    var ici = location.pathname.split('/').pop() || './';
+    Array.prototype.forEach.call(menu.querySelectorAll('.menu-feuille a'), function (a) {
+      if (a.getAttribute('href') === ici) a.setAttribute('aria-current', 'page');
+    });
+    // se referme d'un toucher ailleurs ou avec Échap
+    document.addEventListener('click', function (e) {
+      if (menu.open && !menu.contains(e.target)) menu.open = false;
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+    });
+  }
+
   /* ---------- réglages du placement ---------- */
   var LARGEUR_IMAGE = { petite: 80, moyenne: 120, grande: 170 };  // en px, pour un écran de 1000 px
   var TAILLE_TEXTE = { petite: 22, moyenne: 28, grande: 34 };
