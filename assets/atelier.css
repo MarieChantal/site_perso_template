@@ -22,7 +22,11 @@
   --scotch-encre: #2b2621;
   --trait: #1e2225;
   --filtre-objet: none;
-  --filtre-deco: none;
+  --filtre-deco: saturate(.75) opacity(.85);
+  /* halo autour des objets cliquables */
+  --halo: drop-shadow(0 0 2px #fff) drop-shadow(0 0 8px #fff) drop-shadow(0 0 14px rgba(255, 252, 240, .9));
+  /* ruban adhésif : chatterton gris le jour */
+  --ruban: repeating-linear-gradient(90deg, rgba(255, 255, 255, .07) 0 1px, transparent 1px 3px), linear-gradient(rgba(255, 255, 255, .18), rgba(0, 0, 0, .08)), #8e9193;
   --plinthe: #8f6a45;
   --pq1: #c99b63;
   --pq2: #bb8b55;
@@ -47,7 +51,9 @@ html[data-mode="nuit"] {
   --planche-ombre: rgba(0, 0, 0, .45);
   --scotch: #e3d6b0;
   --filtre-objet: brightness(.92);
-  --filtre-deco: brightness(.72) saturate(.85);
+  --filtre-deco: brightness(.72) saturate(.7) opacity(.85);
+  --halo: drop-shadow(0 0 3px rgba(255, 214, 150, .55)) drop-shadow(0 0 10px rgba(255, 190, 110, .35));
+  --ruban: rgba(235, 222, 185, .85);
   --plinthe: #3a2a1c;
   --pq1: #4f3522;
   --pq2: #46301f;
@@ -122,7 +128,7 @@ html[data-mode="nuit"] .ic-soleil, html[data-mode="jour"] .ic-lune { display: no
   box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
   transform: rotate(-.6deg);
 }
-.menu-feuille::before { content: ""; position: absolute; top: -9px; left: 50%; width: 64px; height: 18px; margin-left: -32px; background: rgba(235, 222, 185, .85); transform: rotate(-3deg); }
+.menu-feuille::before { content: ""; position: absolute; top: -9px; left: 50%; width: 64px; height: 18px; margin-left: -32px; background: var(--ruban); transform: rotate(-3deg); }
 .menu-feuille a { padding: 9px 12px; font-size: 16px; color: inherit; text-decoration: none; border-radius: 3px; }
 .menu-feuille a + a { border-top: 1px dashed rgba(0, 0, 0, .15); }
 .menu-feuille a:hover, .menu-feuille a:focus-visible { color: var(--accent); background: rgba(0, 0, 0, .04); }
@@ -169,6 +175,8 @@ html[data-mode="nuit"] .ic-soleil, html[data-mode="jour"] .ic-lune { display: no
   color: inherit; text-decoration: none;
 }
 .art { display: block; width: 100px; height: 110px; margin-top: 40px; transition: transform .3s ease; }
+/* le halo s'arrête au ras de la planche : rien ne dépasse sous le bas de l'objet */
+a.projet .art { filter: var(--halo); clip-path: inset(-40px -40px 0 -40px); }
 .art svg, .art img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: bottom; }
 .o {
   fill: var(--of, none); stroke: var(--trait);
@@ -206,7 +214,7 @@ a.projet:focus-visible .etiquette { outline: 3px solid var(--accent); outline-of
 .d-photo { background: #f6f3ec; padding: 6px 6px 8px; box-shadow: 0 5px 12px rgba(0, 0, 0, .3); }
 .d-photo img { display: block; width: 100%; object-fit: cover; }
 .d-photo figcaption { font-family: var(--f-titre); font-size: 15px; line-height: 1.1; color: #3b3631; text-align: center; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.scotch::before, .scotch::after { content: ""; position: absolute; top: -8px; width: 34px; height: 14px; background: rgba(235, 222, 185, .85); }
+.scotch::before, .scotch::after { content: ""; position: absolute; top: -8px; width: 34px; height: 14px; background: var(--ruban); }
 .scotch::before { left: -10px; transform: rotate(-30deg); }
 .scotch::after { right: -10px; transform: rotate(30deg); }
 
@@ -238,7 +246,7 @@ a.projet:focus-visible .etiquette { outline: 3px solid var(--accent); outline-of
   box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
   transform: rotate(-.25deg);
 }
-.feuille::before, .feuille::after { content: ""; position: absolute; top: -10px; width: 90px; height: 24px; background: rgba(235, 222, 185, .85); }
+.feuille::before, .feuille::after { content: ""; position: absolute; top: -10px; width: 90px; height: 24px; background: var(--ruban); }
 .feuille::before { left: 24px; transform: rotate(-4deg); }
 .feuille::after { right: 24px; transform: rotate(5deg); }
 .retour { display: inline-block; margin-bottom: 18px; font-size: 14px; color: var(--accent); text-decoration: none; }
