@@ -1,5 +1,7 @@
 # L'atelier
 
+*[English version](README.en.md)*
+
 Un site perso pour partager ses projets. La page d'accueil est un mur d'atelier : chaque projet est un objet posé sur une étagère, du plus récemment mis à jour au plus ancien. Un clic sur l'objet ouvre la page du projet.
 
 <p align="center">
@@ -10,6 +12,19 @@ Un site perso pour partager ses projets. La page d'accueil est un mur d'atelier 
 <p align="center"><em>L'accueil avec le contenu d'exemple : de jour sur ordinateur, de nuit sur téléphone.</em></p>
 
 Le site tourne sur l'hébergement gratuit d'OVH : PHP, pas de base de données. Tout le contenu est rangé dans des dossiers et des fichiers texte faciles à modifier à la main.
+
+C'est un modèle : tu le copies, tu remplaces les projets d'exemple par les tiens, et tu l'envoies sur ton hébergement.
+
+## Démarrer
+
+1. Sur GitHub, clique sur **Use this template → Create a new repository** pour créer ton propre dépôt à partir de celui-ci (ou télécharge-le en ZIP via **Code → Download ZIP**).
+2. Remplis `site.txt` : le nom du site, ton nom, ton e-mail (facultatif) et l'adresse du site.
+3. Réécris `a-propos.md`, ou supprime-le.
+4. Supprime les projets d'exemple de `projets/` (garde `_modele/`) et ajoute les tiens (voir ci-dessous).
+5. Adapte le mur (`mur/mur.txt`) et le sol (`sol/sol.txt`) si tu veux.
+6. Mets le site en ligne : le guide pas à pas est dans [docs/deploiement-ovh.md](docs/deploiement-ovh.md).
+
+Il faut PHP 7.4 ou plus récent ; aucune base de données, aucune dépendance à installer.
 
 ## Ajouter un projet
 
@@ -104,6 +119,8 @@ puis ouvre http://localhost:8000.
 
 Tant que ces secrets n'existent pas, l'action ne fait rien. Tu peux aussi envoyer le contenu du dépôt à la main avec un client FTP, dans le dossier `www/`.
 
+Où trouver ces informations chez OVH, comment envoyer le site à la main, activer HTTPS ou installer le site dans un sous-dossier : tout est détaillé dans [docs/deploiement-ovh.md](docs/deploiement-ovh.md).
+
 ## Organisation des fichiers
 
 ```
@@ -122,7 +139,15 @@ mur/               mur.txt et les images accrochées au mur
 sol/               sol.txt et les images posées par terre
 assets/            la feuille de style et le script de placement
 inc/               le code PHP commun, et Parsedown pour le Markdown (licence MIT)
-docs/              les captures d'écran de ce README (non envoyées sur OVH)
+docs/              le guide de déploiement et les captures d'écran (non envoyés sur OVH)
 ```
 
 Le site vide pèse moins de 200 Ko. Les 100 Mo d'OVH restent pour tes images et tes pages.
+
+## Contribuer
+
+Les suggestions et corrections sont les bienvenues : ouvre une *issue* ou une *pull request*. Garde l'esprit du projet : pas de base de données, pas d'étape de compilation, des fichiers texte simples à modifier à la main, et un site qui tient largement dans les 100 Mo de l'offre gratuite.
+
+## Licence
+
+Le code et les dessins sont sous [licence MIT](LICENSE). Tu peux les réutiliser et les modifier librement, y compris pour ton propre site, en gardant la mention de copyright. Parsedown, inclus dans `inc/`, est aussi sous licence MIT ([inc/Parsedown-LICENSE.txt](inc/Parsedown-LICENSE.txt)).
